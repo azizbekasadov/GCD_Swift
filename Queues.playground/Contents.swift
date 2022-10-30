@@ -19,3 +19,22 @@ initiallyInactive.async {
 }
 
 initiallyInactive.activate()
+
+let queueTwo = DispatchQueue(label: "com.queueTwo")
+let timeDelay = DispatchTime.now() + 3.0
+queueTwo.asyncAfter(deadline: timeDelay, execute: { print("Shown after the delay of 3 secs") })
+let queueOne = DispatchQueue(label: "queueOne")
+let queueSecond = DispatchQueue(label: "queueTwo")
+let queueThird = DispatchQueue(label: "queueThree")
+
+queueOne.sync {
+    print(queueOne.label)
+}
+
+queueSecond.sync {
+    print(queueSecond.label)
+}
+
+queueThird.sync {
+    print(queueThird.label)
+}
